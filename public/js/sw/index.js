@@ -13,8 +13,29 @@ self.addEventListener('install', function(event) {
     );
 });
 
+// My Solution - Not working perfectly
+// self.addEventListener('fetch', function(event) {
+//     // TODO: respond with an entry from the cache if there is one.
+//     // If there isn't, fetch from the network.
+//     event.respondWith(function() {
+//         const cachedResponse = caches.match(event.request);
+//         // Return it if we found one.
+//         if (cachedResponse) return cachedResponse;
+//         // If we didn't find a match in the cache, use the network.
+//         return fetch(event.request);
+//     }());
+// });
+
+// Jake's Solution
 self.addEventListener('fetch', function(event) {
     // TODO: respond with an entry from the cache if there is one.
     // If there isn't, fetch from the network.
-    event.respondWith();
+    event.respondWith(
+        caches.match(event.request).then(function(response) {
+            // Return it if we found one.
+            if (response) return (response);
+            // If we didn't find a match in the cache, use the network.
+            return fetch(event.request);
+        })
+    );
 });
