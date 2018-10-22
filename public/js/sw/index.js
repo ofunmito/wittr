@@ -7,7 +7,7 @@ self.addEventListener('fetch', function(event) {
                 // using a network request
                 return fetch('/imgs/dr-evil.gif');
             }
-            // return response;
+            return response;
         }).catch(function() {
             return new Response("Uh oh, that totally failed!");
         })
