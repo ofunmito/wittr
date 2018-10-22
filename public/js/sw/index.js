@@ -19,7 +19,7 @@ self.addEventListener('install', function(event) {
 self.addEventListener('activate', function(event) {
     event.waitUntil(
         // TODO: remove the old cache
-        caches.delete('wittr-static-v2')
+        caches.delete('wittr-static-v1')
     );
 });
 
